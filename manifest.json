@@ -1,0 +1,19 @@
+{
+   "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+   },
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "description": "This extension monitor the language develop stats",
+   "icons": {
+      "128": "icon.png",
+      "16": "icon.png",
+      "48": "icon.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAopfEWi1dQ8Sa9jrfQZqtVznhYfTk2wIbKLAIhVisA7zAsRShm7PsBs7DKPI877dRdIFbZ2dLV0N3MXs5kXiQ2nRimFWCkc/khCYkGy7IHzE0BBfijo+IQeu0LZ03w0Nj2FCHLGAt6vSmSXIuijDnKMB4vp3Iz7saAyVZv5dWquEy33n9pkNgMqgb8Cr1pN1ERPRyRKrx4lcZybLr6Bmgzr375oITCkLB9qUc3mJ4SQ7agCKu4X2DS+W+wxHZG3BNMuFboJ01hX+fsGYuTDiVBcxnPIML5GEX4fCxmvz80rO6Habsh9EGFQHRt74QdMDDHHh9WK5ku6znJBekNm2WjQIDAQAB",
+   "manifest_version": 2,
+   "name": "Lang fight",
+   "permissions": [ "https://api.github.com/", "tabs" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.3"
+}
