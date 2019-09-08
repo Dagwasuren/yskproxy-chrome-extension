@@ -13,16 +13,28 @@
         font-size: 100%;
       }
       #app {
-        width: 320px;
-        height: 480px;
+        width: 640px;
+        height: 640px;
         overflow-y: auto
       }
       a {
         font-weight:bold
       }
       #ctx {
-        width: 300px;
+        width: 620px;
         height: 400px;
+      }
+      #pacUrl{
+        width: 450px;
+      }
+      #manualProxyScheme {
+        width: 50px;
+      }
+      #manualProxyHost {
+        width: 150px
+      }
+      #manualProxyPort {
+        width: 50px;
       }
     </style>
 
@@ -36,10 +48,26 @@
   </head>
   <body>
     <div>
+      <div>
         <span>Pac Url:</span>
         <input id="pacUrl" />
         <button id="changePacUrl">Set</button>
+      </div>
+      <div>
+        <span>Manual proxy:</span><br />
+        
+        Scheme:<select id="manualProxyScheme">
+            <option value ="http">http</option>
+            <option value ="https">https</option>
+            <option value="socks">socks</option>
+          </select>
+        Host:<input id="manualProxyHost" />        
+        Port:<input id="manualProxyPort" />
+        <button id="changeManualProxy">Set</button>
+      </div>
+      <div>
         <button id="noproxy">NoProxy</button>
+      </div>
     </div>
     <div>
       <p>Current proxy configure:</p>
