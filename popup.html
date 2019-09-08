@@ -20,6 +20,10 @@
       a {
         font-weight:bold
       }
+      #ctx {
+        width: 300px;
+        height: 400px;
+      }
     </style>
 
     <!--
@@ -29,13 +33,18 @@
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
 
-     <script src="vue.js"></script>
   </head>
   <body>
-    <div id="app">
-      <div id="content" v-html="message"></div>
+    <div>
+        <span>Pac Url:</span>
+        <input id="pacUrl" />
+        <button id="changePacUrl">Set</button>
+        <button id="noproxy">NoProxy</button>
     </div>
-    <script src="axios.min.js"></script>
+    <div>
+      <p>Current proxy configure:</p>
+        <textarea id="ctx"></textarea>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>

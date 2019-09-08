@@ -1,38 +1,61 @@
-new Vue({
-  el: '#app',
-  data: {
-    message: "<p>Language develop commit stats:</p>"
-  },
-  created: function () {
-    this.getSum('Rust', 'rust-lang/rust')
-    this.getSum('Python', 'python/cpython')
-    this.getSum('PHP', 'php/php-src')
-    this.getSum('Golang', 'golang/go')
-    this.getSum('Ruby', 'ruby/ruby')
-    this.getSum('Swift', 'apple/swift')
-    this.getSum('Scala', 'scala/scala')
-    this.getSum('Clojure', 'clojure/clojure')
-    this.getSum('Kotlin', 'JetBrains/kotlin')
-  },
-  methods: {
-    getSum: function (repo_name, repo_url) {
-      var vm = this;
-      axios.get('https://api.github.com/repos/' + repo_url + '/stats/commit_activity')
-        .then(function (response) {
-          var data = response.data.pop() 
-          var sum = data.total
-          console.log(sum)
-          vm.message += "<p><a href=\"https://github.com/" + repo_url + "\">" + repo_name + "</a> commits in this week: " + sum + "</p>"
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
-  }
+console.log("yskproxy loaded")
+let pInput = document.getElementById("pacUrl")
+
+function getElm(s) {
+  return document.getElementById(s);
+}
+
+function jsonPretty(s) {
+  return JSON.stringify(s, undefined, 2);
+}
+
+function displayCurrentProxyConfig() {
+  chrome.proxy.settings.get({}, function (data) {
+    console.log(data.value);
+    getElm("ctx").value = jsonPretty(data.value)
+  })
+}
+
+chrome.storage.sync.get('yskproxyPacUrl', function (data) {
+  pInput.value = data.yskproxyPacUrl
+  console.log(data)
 })
 
-window.addEventListener('click',function(e){
-  if(e.target.href!==undefined){
-    chrome.tabs.create({url:e.target.href})
-  }
-})
+displayCurrentProxyConfig();
+
+let cbtn = document.getElementById("changePacUrl")
+cbtn.onclick = function () {
+  var date = new Date();
+  var ts = date.getTime();
+  var pacUrl = document.getElementById("pacUrl").value;
+  pacUrl = pacUrl + "?t=" + ts;
+  console.log(pacUrl);
+  chrome.storage.sync.set({ yskproxyPacUrl: pacUrl }, function () {
+    console.log('pacUrl: ' + pacUrl)
+  })
+  var config = {
+    mode: "pac_script",
+    pacScript: {
+      url: pacUrl
+    }
+  };
+  chrome.proxy.settings.set(
+    { value: config, scope: 'regular' },
+    function () { });
+
+  displayCurrentProxyConfig();
+
+}
+
+let npBtn = document.getElementById("noproxy")
+npBtn.onclick = function () {
+  var config = {
+    mode: "direct"
+  };
+  chrome.proxy.settings.set(
+    { value: config, scope: 'regular' },
+    function () { });
+
+  displayCurrentProxyConfig();
+
+}
