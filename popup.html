@@ -24,7 +24,7 @@
         width: 620px;
         height: 400px;
       }
-      #pacUrl{
+      #pacUrl, #pacUrl2, #pacUrl3{
         width: 450px;
       }
       #manualProxyScheme {
@@ -49,18 +49,24 @@
   <body>
     <div>
       <div>
-        <span>Pac Url:</span>
+        <span>Pac Url1:</span>
         <input id="pacUrl" />
         <button id="changePacUrl">Set</button>
       </div>
       <div>
+        <span>Pac Url2:</span>
+        <input id="pacUrl2" />
+        <button id="changePacUrl2">Set</button>
+      </div>
+      <div>
+        <span>Pac Url3:</span>
+        <input id="pacUrl3" />
+        <button id="changePacUrl3">Set</button>
+      </div>
+      <div>
         <span>Manual proxy:</span><br />
         
-        Scheme:<select id="manualProxyScheme">
-            <option value ="http">http</option>
-            <option value ="https">https</option>
-            <option value="socks">socks</option>
-          </select>
+        Scheme:<input id="manualProxyScheme" value="http" readonly="readonly"/>
         Host:<input id="manualProxyHost" />        
         Port:<input id="manualProxyPort" />
         <button id="changeManualProxy">Set</button>
