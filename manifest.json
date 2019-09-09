@@ -14,9 +14,7 @@
    "permissions": [
        "tabs",
        "proxy", 
-       "storage",  
-       "declarativeContent",
-       "*://*/*"
+       "storage"
    ],
    "version": "2"
 }
