@@ -68,26 +68,26 @@ function setPacUrlAction(name) {
     alert("Please enter valid configure");
     return
   }
-  npacUrl = pacUrl + "?t=" + ts;
-  console.log(pacUrl);
+  npacUrl = pacUrl.replace("/(\r\n|\n|\r)/gm","");
   let pacConfigure = {};
   if (name == "pacUrl") {
-    pacConfigure = { yskproxyPacUrl: pacUrl };
+    pacConfigure = { yskproxyPacUrl: npacUrl };
   }
   if (name == "pacUrl2") {
-    pacConfigure = { yskproxyPacUrl2: pacUrl };
+    pacConfigure = { yskproxyPacUrl2: npacUrl };
   }
   if (name == "pacUrl3") {
-    pacConfigure = { yskproxyPacUrl3: pacUrl };
+    pacConfigure = { yskproxyPacUrl3: npacUrl };
   }
 
   chrome.storage.sync.set(pacConfigure, function () {
     console.log('pacUrl: ' + pacUrl)
   })
+  // change pacScript.url to pacScript.data , to use inline pac content
   let config = {
     mode: "pac_script",
     pacScript: {
-      url: npacUrl
+      data: npacUrl
     }
   };
   chrome.proxy.settings.set(

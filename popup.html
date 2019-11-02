@@ -5,81 +5,113 @@
  value "popup.html".
  -->
 <html>
-  <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #app {
-        width: 640px;
-        height: 640px;
-        overflow-y: auto
-      }
-      a {
-        font-weight:bold
-      }
-      #ctx {
-        width: 620px;
-        height: 400px;
-      }
-      #pacUrl, #pacUrl2, #pacUrl3{
-        width: 450px;
-      }
-      #manualProxyScheme {
-        width: 50px;
-      }
-      #manualProxyHost {
-        width: 150px
-      }
-      #manualProxyPort {
-        width: 50px;
-      }
-    </style>
 
-    <!--
+<head>
+  <title>Getting Started Extension's Popup</title>
+  <style>
+    body {
+      font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+      font-size: 14pt;
+    }
+
+    #app {
+      width: 750px;
+      height: 550px;
+      overflow: hidden;
+    }
+
+    .left-panel,
+    .right-panel {
+      width: 370px;
+      height: 550px;
+      position: absolute;
+    }
+
+    .right-panel {
+      left: 370px;
+
+    }
+
+    button {
+      width: 100px;
+      border: #269 1px solid;
+      margin-bottom: 10px;
+      padding: 8px 0px;
+      font-size: 14pt;
+      font-weight: bold;
+    }
+
+    a {
+      font-weight: bold
+    }
+
+    textarea {
+      width: 350px;
+      height: 80px;
+    }
+
+    
+    .preview {
+      height: 350px;
+    }
+
+    #manualProxyScheme {
+      width: 50px;
+    }
+
+    #manualProxyHost {
+      width: 150px
+    }
+
+    #manualProxyPort {
+      width: 50px;
+    }
+  </style>
+
+  <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
 
-  </head>
-  <body>
-    <div>
-      <div>
-        <span>Pac Url1:</span>
-        <input id="pacUrl" />
-        <button id="changePacUrl">Set</button>
-      </div>
-      <div>
-        <span>Pac Url2:</span>
-        <input id="pacUrl2" />
-        <button id="changePacUrl2">Set</button>
-      </div>
-      <div>
-        <span>Pac Url3:</span>
-        <input id="pacUrl3" />
-        <button id="changePacUrl3">Set</button>
-      </div>
-      <div>
-        <span>Manual proxy:</span><br />
-        
-        Scheme:<input id="manualProxyScheme" value="http" readonly="readonly"/>
-        Host:<input id="manualProxyHost" />        
-        Port:<input id="manualProxyPort" />
-        <button id="changeManualProxy">Set</button>
-      </div>
-      <div>
-        <button id="noproxy">NoProxy</button>
-      </div>
-    </div>
-    <div>
-      <p>Current proxy configure:</p>
-        <textarea id="ctx"></textarea>
-    </div>
-    <script src="popup.js"></script>
-  </body>
-</html>
+</head>
 
+<body>
+  <div id="app">
+    <div class="left-panel">
+      <span>Pac Url1:</span>
+      <button id="changePacUrl">Set</button>
+      <br />
+      <textarea id="pacUrl"></textarea>
+      <br />
+      <span>Pac Url2:</span>
+      <button id="changePacUrl2">Set</button>
+      <br />
+      <textarea id="pacUrl2"></textarea>
+      <br />
+      <span>Pac Url3:</span>
+      <button id="changePacUrl3">Set</button>
+      <br />
+      <textarea id="pacUrl3"></textarea>
+      <br />
+      <span>Static:</span>
+
+      Scheme:<input id="manualProxyScheme" value="http" readonly="readonly" /> 
+      <button id="changeManualProxy">Set</button>
+      <br />
+      Host:<input id="manualProxyHost" />
+      Port:<input id="manualProxyPort" />
+      <br />
+     
+    </div>
+    <div class="right-panel">
+        <button id="noproxy">NoProxy</button><br />
+      Current proxy configure:<br />
+      <textarea class="preview" id="ctx"></textarea>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
